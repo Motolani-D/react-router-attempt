@@ -8,10 +8,12 @@ import { useState } from "react";
 import StarIcon from "./component/StarIcon";
 import { Button } from "react-bootstrap";
 import { myMovieList } from "./Assets/MyMoviesList";
-import { Route } from "react-router-dom";
+import { BroswerRouter as Router } from "react-router-dom";
 import Trailer from "./component/Trailer";
 import NavBar from "./component/NavBar";
-import { Routes } from "react-router-dom";
+import { Route } from "react-router-dom";
+import MovieCard from "./component/MovieCard";
+import { Switch } from "react-router-dom";
 
 function App() {
   const [searchMovieTitle, setSearchMovieTitle] = useState("");
@@ -25,32 +27,26 @@ function App() {
   const handleRatingFilter = (index) => {};
 
   return (
-    <>
-      <div className="App">
-        <div>
-          <NavBar />
+    <Router>
+      <>
+        <div className="App">
+          <div>{/* <NavBar /> */}</div>
+          <div className="header-items">
+            {/* <Button variant="primary" onClick={handleShow} id="add-button">
+              <span style={{ fontSize: "25px", color: "green" }}> + </span> Add
+              Movie
+            </Button> */}
+          </div>
+          {/* <Switch>
+            <Route exact path="/">
+              <MovieCard />{" "}
+            </Route>
+          </Switch> */}
         </div>
-        <div className="header-items">
-          <Rating />
-          <Search />
-
-          <Button variant="primary" onClick={handleShow} id="add-button">
-            <span style={{ fontSize: "25px", color: "green" }}> + </span> Add
-            Movie
-          </Button>
-        </div>
-        <div>
-          <h2>Lana Movie App</h2>
-        </div>
-        <div className="moviesArea">
-          <MovieList movies={movies} moviesArray={searchMovieTitle} />
-          <Routes>
-            <Route exact path="/trailer" component={<Trailer />} />
-          </Routes>{" "}
-        </div>
-      </div>
-      <AddMovieModal show={show} setShow={setShow} addMovie={addMovie} />
-    </>
+        <AddMovieModal show={show} setShow={setShow} addMovie={addMovie} />
+        <Trailer />
+      </>
+    </Router>
   );
 }
 
